@@ -1,17 +1,14 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.ErrorPage;
 import br.edu.utfpr.po.FindOwnerPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.ListOwnersPage;
-import br.edu.utfpr.po.VeterinariansPage;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
