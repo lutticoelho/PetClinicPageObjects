@@ -44,4 +44,10 @@ public class FindOwnerPage extends PetClinicBasePage {
         
         return "";
     }
+
+    public AddOwnerPage goToAddOwner() {
+        addButton.click();
+        
+        return new AddOwnerPage(driver);
+    }
 }
