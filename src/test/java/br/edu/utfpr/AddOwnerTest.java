@@ -38,7 +38,7 @@ public class AddOwnerTest {
     }    
     
     @Test
-    public void testOwnerInsertion() {
+    public void testSuccessfulOwnerInsertion() {
         HomePage homePage = new HomePage(driver);
         
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
@@ -59,4 +59,27 @@ public class AddOwnerTest {
         assertEquals("993335544", ownerInfoPage.getTelephone());
     }    
     
+    @Test
+    public void testErrorNoLastNameOwnerInsertion() {
+        HomePage homePage = new HomePage(driver);
+        FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
+        AddOwnerPage addOwnerPage = findOwnerPage.goToAddOwner();
+        addOwnerPage.setFirstName("Jose")
+                .setAddress("Rua das Acacias, 451")
+                .setCity("Cornelio Procopio")
+                .setTelephone("993335544")
+                .addInvalidData();
+        
+        assertEquals(1, addOwnerPage.getNumberOfErrors());
+    }
+    
+    @Test
+    public void testErrorNoData() {
+        HomePage homePage = new HomePage(driver);
+        FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
+        AddOwnerPage addOwnerPage = findOwnerPage.goToAddOwner();
+        addOwnerPage.addInvalidData();
+        
+        assertEquals(5, addOwnerPage.getNumberOfErrors());
+    }    
 }

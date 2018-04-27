@@ -1,5 +1,7 @@
 package br.edu.utfpr.po;
 
+import java.util.List;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +24,9 @@ public class AddOwnerPage extends PetClinicBasePage {
     
     @FindBy(xpath = "//button[@type='submit']")
     WebElement addOwnerButton;
+    
+    @FindBy(xpath = "//span[@class='help-inline']")
+    List<WebElement> errors;
     
     public AddOwnerPage(WebDriver driver) {
         super(driver);
@@ -60,5 +65,14 @@ public class AddOwnerPage extends PetClinicBasePage {
     public OwnerInformationPage addValidData() {
         addOwnerButton.click();
         return new OwnerInformationPage(driver);
+    }
+    
+    public AddOwnerPage addInvalidData() {
+        addOwnerButton.click();
+        return this;
+    }    
+
+    public int getNumberOfErrors() {
+        return errors.size();
     }
 }
