@@ -9,8 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  *
@@ -27,7 +30,13 @@ public class ListOwnersTest {
     
     @Before
     public void before() {
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("window-size=1200x600");
+        chromeOptions.addArguments("start-maximized");
+        driver = new ChromeDriver(chromeOptions);
+        
+        //driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);     
     }
     
@@ -67,15 +76,28 @@ public class ListOwnersTest {
     }    
     
     @Test
-    public void testFindNoOwner() {
+    public void testFindInexistentOwnerR() {
         HomePage homePage = new HomePage(driver);
         
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
         
-        findOwnerPage
-                .setLastName("XXX YYYY")
+        findOwnerPage.setLastName("Goodenough")
                 .clickFindButton();
         
         assertEquals("has not been found", findOwnerPage.getErrorMessage());
     }        
+    
+    @Test
+    public void testFindInexistentOwner() {
+        driver.get("http://localhost:8080/");
+        driver.findElement(By.xpath("//a[@title='find owners']")).click();
+        WebElement lastNameField = driver.findElement(By.id("lastName"));
+        lastNameField.clear();
+        lastNameField.sendKeys("Goodenough");
+        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        
+        WebElement error = driver.findElement(By.xpath("//*[@id='lastNameGroup']/div/span/div/p"));
+        
+        assertEquals("has not been found", error.getText());
+    }    
 }
