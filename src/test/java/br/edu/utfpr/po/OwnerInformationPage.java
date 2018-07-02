@@ -14,6 +14,9 @@ public class OwnerInformationPage extends PetClinicBasePage {
     @FindBy(xpath = "//td")
     List<WebElement> ownerData;
     
+    @FindBy(xpath = "//a[contains(text(),'Edit')]")
+    WebElement editOwnerButton;
+    
     public OwnerInformationPage(WebDriver driver) {
         super(driver);
     }
@@ -32,5 +35,10 @@ public class OwnerInformationPage extends PetClinicBasePage {
 
     public Object getTelephone() {
         return ownerData.get(3).getText();
+    }
+
+    public EditOwnerPage clickEditButton() {
+        editOwnerButton.click();
+        return new EditOwnerPage(driver);
     }
 }

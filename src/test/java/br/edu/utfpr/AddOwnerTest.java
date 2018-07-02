@@ -1,6 +1,6 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.AddOwnerPage;
+import br.edu.utfpr.po.EditOwnerPage;
 import br.edu.utfpr.po.FindOwnerPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.OwnerInformationPage;
@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  *
@@ -28,7 +29,11 @@ public class AddOwnerTest {
     
     @Before
     public void before() {
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("window-size=1200x600");
+        chromeOptions.addArguments("start-maximized");
+        driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);     
     }
     
@@ -42,10 +47,10 @@ public class AddOwnerTest {
         HomePage homePage = new HomePage(driver);
         
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
-        AddOwnerPage addOwnerPage = findOwnerPage.goToAddOwner();
-        assertEquals("Owner", addOwnerPage.getTitle());
+        EditOwnerPage editOwnerPage = findOwnerPage.goToAddOwner();
+        assertEquals("Owner", editOwnerPage.getTitle());
         
-        OwnerInformationPage ownerInfoPage = addOwnerPage.setFirstName("Joao")
+        OwnerInformationPage ownerInfoPage = editOwnerPage.setFirstName("Joao")
                 .setLastName("Da Silva")
                 .setAddress("Rua das Acacias, 451")
                 .setCity("Cornelio Procopio")
@@ -63,23 +68,24 @@ public class AddOwnerTest {
     public void testErrorNoLastNameOwnerInsertion() {
         HomePage homePage = new HomePage(driver);
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
-        AddOwnerPage addOwnerPage = findOwnerPage.goToAddOwner();
-        addOwnerPage.setFirstName("Jose")
+        EditOwnerPage editOwnerPage = findOwnerPage.goToAddOwner();
+        editOwnerPage.setFirstName("Jose")
                 .setAddress("Rua das Acacias, 451")
                 .setCity("Cornelio Procopio")
                 .setTelephone("993335544")
                 .addInvalidData();
         
-        assertEquals(1, addOwnerPage.getNumberOfErrors());
+        assertEquals(1, editOwnerPage.getNumberOfErrors());
+        assertTrue(editOwnerPage.getErrorMessage(0).endsWith("pode estar vazio"));
     }
     
     @Test
     public void testErrorNoData() {
         HomePage homePage = new HomePage(driver);
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
-        AddOwnerPage addOwnerPage = findOwnerPage.goToAddOwner();
-        addOwnerPage.addInvalidData();
+        EditOwnerPage editOwnerPage = findOwnerPage.goToAddOwner();
+        editOwnerPage.addInvalidData();
         
-        assertEquals(5, addOwnerPage.getNumberOfErrors());
+        assertEquals(5, editOwnerPage.getNumberOfErrors());
     }    
 }

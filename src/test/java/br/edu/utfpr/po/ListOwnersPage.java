@@ -1,6 +1,7 @@
 package br.edu.utfpr.po;
 
 import java.util.List;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,5 +25,10 @@ public class ListOwnersPage extends PetClinicBasePage {
     
     public String getRow(int index) {
         return rows.get(index).getText();
+    }
+
+    public OwnerInformationPage selectOwner(int ownerIndex) {
+        rows.get(ownerIndex).findElement(By.tagName("a")).click();
+        return new OwnerInformationPage(driver);
     }
 }

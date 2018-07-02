@@ -1,7 +1,5 @@
 package br.edu.utfpr;
 
-import br.edu.utfpr.po.ErrorPage;
-import br.edu.utfpr.po.FindOwnerPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.VeterinariansPage;
 import java.util.concurrent.TimeUnit;

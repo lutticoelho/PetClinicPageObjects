@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,8 +36,6 @@ public class ListOwnersTest {
         chromeOptions.addArguments("window-size=1200x600");
         chromeOptions.addArguments("start-maximized");
         driver = new ChromeDriver(chromeOptions);
-        
-        //driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);     
     }
     
@@ -76,7 +75,7 @@ public class ListOwnersTest {
     }    
     
     @Test
-    public void testFindInexistentOwnerR() {
+    public void testFindInexistentOwnerRefactored() {
         HomePage homePage = new HomePage(driver);
         
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
@@ -87,6 +86,10 @@ public class ListOwnersTest {
         assertEquals("has not been found", findOwnerPage.getErrorMessage());
     }        
     
+    /**
+     * some test as before. Keep it to show the difference.
+     */
+    @Ignore
     @Test
     public void testFindInexistentOwner() {
         driver.get("http://localhost:8080/");
