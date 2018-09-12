@@ -33,6 +33,7 @@ public class AddOwnerTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("headless");
         chromeOptions.addArguments("window-size=1200x600");
+        chromeOptions.addArguments("lang=en-US");
         chromeOptions.addArguments("start-maximized");
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);     
@@ -77,7 +78,7 @@ public class AddOwnerTest {
                 .addInvalidData();
         
         assertEquals(1, editOwnerPage.getNumberOfErrors());
-        assertTrue(editOwnerPage.getErrorMessage(0).endsWith("pode estar vazio"));
+        assertTrue(editOwnerPage.getErrorMessage(0).endsWith("must not be empty"));
     }
     
     @Test
