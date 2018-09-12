@@ -3,6 +3,7 @@ package br.edu.utfpr;
 import br.edu.utfpr.po.EditOwnerPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.OwnerInformationPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import static org.junit.Assert.*;
@@ -22,7 +23,7 @@ public class EditOwnerTest {
     
     @BeforeClass
     public static void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "/home/utfpr/install/selenium/chromedriver");
+        WebDriverManager.chromedriver().setup();
     }
     
     @Before

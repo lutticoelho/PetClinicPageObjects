@@ -2,6 +2,7 @@ package br.edu.utfpr;
 
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.VeterinariansPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +22,7 @@ public class VeterinarianTest {
     
     @BeforeClass
     public static void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "/home/utfpr/install/selenium/chromedriver");
+        WebDriverManager.chromedriver().setup();
     }
     
     @Before

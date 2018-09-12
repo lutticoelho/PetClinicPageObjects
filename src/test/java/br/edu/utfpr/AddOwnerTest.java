@@ -4,6 +4,7 @@ import br.edu.utfpr.po.EditOwnerPage;
 import br.edu.utfpr.po.FindOwnerPage;
 import br.edu.utfpr.po.HomePage;
 import br.edu.utfpr.po.OwnerInformationPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +25,7 @@ public class AddOwnerTest {
     
     @BeforeClass
     public static void beforeClass() {
-        System.setProperty("webdriver.chrome.driver", "/home/utfpr/install/selenium/chromedriver");
+        WebDriverManager.chromedriver().setup();
     }
     
     @Before
