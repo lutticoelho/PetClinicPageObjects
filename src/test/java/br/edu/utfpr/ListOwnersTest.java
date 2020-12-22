@@ -33,7 +33,7 @@ public class ListOwnersTest {
     @Before
     public void before() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("headless");
+//        chromeOptions.addArguments("headless");
         chromeOptions.addArguments("window-size=1200x600");
         chromeOptions.addArguments("start-maximized");
         driver = new ChromeDriver(chromeOptions);
@@ -88,7 +88,7 @@ public class ListOwnersTest {
     }        
     
     /**
-     * some test as before. Keep it to show the difference.
+     * Same test as before. Keep it to show the difference.
      */
     @Ignore
     @Test

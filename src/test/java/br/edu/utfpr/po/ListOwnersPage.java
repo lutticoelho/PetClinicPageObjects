@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class ListOwnersPage extends PetClinicBasePage {
     
-    @FindBy(xpath = "//*[@id='vets']/tbody/tr")
+    @FindBy(xpath = "//*[@id='owners']/tbody/tr")
     List<WebElement> rows;
     
     public ListOwnersPage(WebDriver driver) {

@@ -43,18 +43,5 @@ public class VeterinarianTest {
         VeterinariansPage vetPage = homePage.getMenu().goToVeterinarians();
         assertEquals("Veterinarians", vetPage.getTitle());
         assertEquals(6, vetPage.getNumberOfVets());
-    }    
-    
-    @Test
-    public void testViewVetsXMLJSON() {
-        HomePage homePage = new HomePage(driver);
-        
-        VeterinariansPage vetPage = homePage.getMenu().goToVeterinarians();
-        vetPage.viewXML()
-                .goBack()
-                .viewJSON()
-                .goBack();
-        
-        assertEquals("Veterinarians", vetPage.getTitle());
-    }    
+    }        
 }
