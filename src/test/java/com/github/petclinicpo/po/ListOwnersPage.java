@@ -1,4 +1,4 @@
-package br.edu.utfpr.po;
+package com.github.petclinicpo.po;
 
 import java.util.List;
 import org.openqa.selenium.By;

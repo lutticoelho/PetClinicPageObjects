@@ -1,4 +1,4 @@
-package br.edu.utfpr.po;
+package com.github.petclinicpo.po;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

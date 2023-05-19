@@ -1,9 +1,5 @@
-package br.edu.utfpr;
+package com.github.petclinicpo.tests;
 
-import br.edu.utfpr.po.ErrorPage;
-import br.edu.utfpr.po.FindOwnerPage;
-import br.edu.utfpr.po.HomePage;
-import br.edu.utfpr.po.VeterinariansPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
@@ -14,6 +10,11 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
+import com.github.petclinicpo.po.ErrorPage;
+import com.github.petclinicpo.po.FindOwnerPage;
+import com.github.petclinicpo.po.HomePage;
+import com.github.petclinicpo.po.VeterinariansPage;
 
 /**
  *
