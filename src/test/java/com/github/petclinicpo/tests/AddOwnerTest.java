@@ -56,14 +56,14 @@ public class AddOwnerTest {
         OwnerInformationPage ownerInfoPage = editOwnerPage.setFirstName("Joao")
                 .setLastName("Da Silva")
                 .setAddress("Rua das Acacias, 451")
-                .setCity("Cornelio Procopio")
+                .setCity("Sao Carlos")
                 .setTelephone("993335544")
                 .addValidData();
         
         assertEquals("Owner Information", ownerInfoPage.getTitle());
         assertEquals("Joao Da Silva", ownerInfoPage.getName());
         assertEquals("Rua das Acacias, 451", ownerInfoPage.getAddress());
-        assertEquals("Cornelio Procopio", ownerInfoPage.getCity());
+        assertEquals("Sao Carlos", ownerInfoPage.getCity());
         assertEquals("993335544", ownerInfoPage.getTelephone());
     }    
     
@@ -74,7 +74,7 @@ public class AddOwnerTest {
         EditOwnerPage editOwnerPage = findOwnerPage.goToAddOwner();
         editOwnerPage.setFirstName("Jose")
                 .setAddress("Rua das Acacias, 451")
-                .setCity("Cornelio Procopio")
+                .setCity("Sao Carlos")
                 .setTelephone("993335544")
                 .addInvalidData();
         

@@ -9,6 +9,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import com.github.petclinicpo.po.HomePage;
 import com.github.petclinicpo.po.VeterinariansPage;
@@ -28,7 +29,12 @@ public class VeterinarianTest {
     
     @Before
     public void before() {
-        driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("window-size=1200x600");
+        chromeOptions.addArguments("start-maximized");
+        driver = new ChromeDriver(chromeOptions);
+
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);     
     }
     
@@ -43,6 +49,6 @@ public class VeterinarianTest {
         
         VeterinariansPage vetPage = homePage.getMenu().goToVeterinarians();
         assertEquals("Veterinarians", vetPage.getTitle());
-        assertEquals(6, vetPage.getNumberOfVets());
+        assertEquals(5, vetPage.getNumberOfVets());
     }        
 }

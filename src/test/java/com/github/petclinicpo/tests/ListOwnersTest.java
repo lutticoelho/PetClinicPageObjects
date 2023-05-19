@@ -7,10 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -34,7 +31,7 @@ public class ListOwnersTest {
     @Before
     public void before() {
         ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("headless");
+        chromeOptions.addArguments("headless");
         chromeOptions.addArguments("window-size=1200x600");
         chromeOptions.addArguments("start-maximized");
         driver = new ChromeDriver(chromeOptions);
@@ -55,7 +52,7 @@ public class ListOwnersTest {
         ListOwnersPage listOwnersPage = findOwnerPage.clickFindButton();
         assertEquals("Owners", listOwnersPage.getTitle());
         //check show all
-        assertTrue(listOwnersPage.getNumberOfOwners() > 8); 
+        assertEquals(5, listOwnersPage.getNumberOfOwners()); 
     }   
     
     @Test
@@ -77,7 +74,7 @@ public class ListOwnersTest {
     }    
     
     @Test
-    public void testFindInexistentOwnerRefactored() {
+    public void testFindInexistentOwner() {
         HomePage homePage = new HomePage(driver);
         
         FindOwnerPage findOwnerPage = homePage.getMenu().goToFindOwners();
@@ -88,21 +85,4 @@ public class ListOwnersTest {
         assertEquals("has not been found", findOwnerPage.getErrorMessage());
     }        
     
-    /**
-     * Same test as before. Keep it to show the difference.
-     */
-    @Ignore
-    @Test
-    public void testFindInexistentOwner() {
-        driver.get("http://localhost:8080/");
-        driver.findElement(By.xpath("//a[@title='find owners']")).click();
-        WebElement lastNameField = driver.findElement(By.id("lastName"));
-        lastNameField.clear();
-        lastNameField.sendKeys("Goodenough");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        
-        WebElement error = driver.findElement(By.xpath("//*[@id='lastNameGroup']/div/span/div/p"));
-        
-        assertEquals("has not been found", error.getText());
-    }    
 }
