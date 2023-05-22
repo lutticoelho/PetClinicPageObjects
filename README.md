@@ -7,6 +7,6 @@
 	
 ## GraphWalker
 
-To generate adaptor code, mvn graphwalker:generate-sources
+To generate adaptor code, run >> mvn graphwalker:generate-sources ; it will look for model files in folder 'src/main/resources' and it will generate an interface for each model in folder 'target/generated-sources/graphwalker'.
 
 To execute, run >> mvn graphwalker:test
