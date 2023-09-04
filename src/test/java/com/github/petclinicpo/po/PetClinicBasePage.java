@@ -26,5 +26,10 @@ public class PetClinicBasePage extends BasePage {
     
     public String getTitle() {
         return title.getText();
-    }    
+    }  
+    
+    public ErrorPage goToErrorPage() {
+        this.driver.navigate().forward();
+        return (ErrorPage)this;
+    }  
 }

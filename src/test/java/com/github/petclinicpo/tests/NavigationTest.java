@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import com.github.petclinicpo.po.ErrorPage;
 import com.github.petclinicpo.po.FindOwnerPage;
 import com.github.petclinicpo.po.HomePage;
+import com.github.petclinicpo.po.PetClinicBasePage;
 import com.github.petclinicpo.po.VeterinariansPage;
 
 /**
@@ -61,4 +62,12 @@ public class NavigationTest {
         homePage = errorPage.getMenu().goToHome();
         assertEquals("Welcome", homePage.getTitle());
     }    
+
+    @Test
+    public void testErrorOnNavigationMenu() {
+        HomePage homePage = new HomePage(driver);
+        
+        ErrorPage errorPage = homePage.goToErrorPage();
+        assertEquals("404", errorPage.getError());
+    }   
 }
